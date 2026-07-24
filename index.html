@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pranauv Skandhan</title>
+<meta name="description" content="Pranauv Skandhan — Physics undergraduate and AI/ML researcher at SRM Institute, Chennai. Co-founder of The Hadron, building Neurova.">
+<meta name="theme-color" content="#0F172A">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230F172A'/%3E%3Ctext x='32' y='45' font-family='Arial, sans-serif' font-size='36' font-weight='bold' fill='%232DD4BF' text-anchor='middle'%3EP%3C/text%3E%3C/svg%3E">
+
+<!-- Fonts: Manrope (headings) + Inter (body) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+:root{
+  /* light mode */
+  --bg-1:      #F8FAFC;   /* slate-50  — hero & alternating sections */
+  --bg-2:      #FFFFFF;   /* white     — alternating sections */
+  --card:      #FFFFFF;
+  --footer-bg: #F1F5F9;   /* slate-100 */
+  --text:      #1E293B;   /* slate-800 */
+  --muted:     #475569;   /* slate-600 */
+  --faint:     #64748B;   /* slate-500 */
+  --border:    #E2E8F0;   /* slate-200 */
+  --accent:       #0D9488; /* teal-600 */
+  --accent-hover: #0F766E; /* teal-700 */
+  --accent-bar:   #14B8A6; /* teal-500 */
+  --pill-bg:     #CCFBF1;  /* teal-100 */
+  --pill-text:   #115E59;  /* teal-800 */
+  --pill-border: #99F6E4;  /* teal-200 */
+  --btn-hover-bg: #F0FDFA; /* teal-50 */
+  --ring:      #99F6E4;    /* teal-200 avatar ring */
+  --glow:      0 0 20px rgba(13,148,136,.15);
+  --nav-h: 68px;
+}
+html.dark{
+  --bg-1:      #0F172A;   /* slate-900 */
+  --bg-2:      #020617;   /* slate-950 */
+  --card:      #1E293B;   /* slate-800 */
+  --footer-bg: #1E293B;
+  --text:      #F1F5F9;   /* slate-100 */
+  --muted:     #CBD5E1;   /* slate-300 */
+  --faint:     #94A3B8;   /* slate-400 */
+  --border:    #334155;   /* slate-700 */
+  --accent:       #2DD4BF; /* teal-400 */
+  --accent-hover: #5EEAD4; /* teal-300 */
+  --accent-bar:   #2DD4BF;
+  --pill-bg:     rgba(19,78,74,.45); /* teal-900/45 */
+  --pill-text:   #99F6E4;            /* teal-200 */
+  --pill-border: #0F766E;            /* teal-700 */
+  --btn-hover-bg: rgba(19,78,74,.25);
+  --ring:      #0F766E;
+  --glow:      0 0 20px rgba(45,212,191,.14);
+}
+
+/* ============ Base ============ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:calc(var(--nav-h) + 12px)}
+/* hidden scrollbar, as on the reference site */
+::-webkit-scrollbar{display:none}
+html{scrollbar-width:none}
+body{
+  font-family:'Inter',system-ui,sans-serif;
+  background:var(--bg-1);
+  color:var(--text);
+  line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+  transition:background .3s ease,color .3s ease;
+}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--accent);color:var(--bg-2)}
+
+.font-heading{font-family:'Manrope',sans-serif}
+.container{max-width:110rem;margin:0 auto;padding:0 clamp(1.5rem,4vw,4.5rem)}
+.section{padding:clamp(4rem,8vw,6rem) 0}
+.bg-1{background:var(--bg-1)}
+.bg-2{background:var(--bg-2)}
+
+/* Inline text links (accent, bold, underline on hover) */
+.tlink{color:var(--accent);font-weight:700;transition:color .2s ease}
+.tlink:hover{color:var(--accent-hover);text-decoration:underline;text-underline-offset:3px}
+
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:4px}
+
+/* ============ Section heading kit ============ */
+.section-head{margin-bottom:clamp(2rem,4vw,3rem)}
+.section-head h2{
+  font-family:'Manrope',sans-serif;font-weight:600;
+  font-size:clamp(1.875rem,3.4vw,2.25rem);
+}
+.head-bar{width:64px;height:4px;background:var(--accent-bar);border-radius:999px;margin-top:1rem}
+.head-note{display:block;margin-top:1rem;font-size:.95rem;font-weight:500;color:var(--faint)}
+
+/* ============ Nav ============ */
+.nav{
+  position:sticky;top:0;z-index:100;
+  background:color-mix(in srgb, var(--bg-1) 90%, transparent);
+  backdrop-filter:blur(6px);
+  border-bottom:1px solid var(--border);
+  transition:background .3s ease,border-color .3s ease;
+}
+.nav-inner{
+  max-width:110rem;margin:0 auto;height:var(--nav-h);
+  padding:0 clamp(1.5rem,4vw,4.5rem);
+  display:flex;align-items:center;justify-content:space-between;gap:1rem;
+}
+.wordmark{
+  font-family:'Manrope',sans-serif;font-weight:700;
+  font-size:1.125rem;letter-spacing:.02em;text-transform:uppercase;
+  white-space:nowrap;
+}
+.nav-right{display:flex;align-items:center;gap:2rem}
+.nav-links{display:flex;align-items:center;gap:2rem;list-style:none}
+.nav-links a{
+  font-size:1.05rem;color:var(--text);
+  border-bottom:2px solid transparent;padding:.2rem 0;
+  transition:color .2s ease,border-color .2s ease;
+}
+.nav-links a:hover{color:var(--accent);border-bottom-color:var(--accent)}
+.nav-links a.active{color:var(--accent);border-bottom-color:var(--accent)}
+
+/* Theme toggle switch */
+.theme-switch{position:relative;display:inline-block;width:49px;height:24px;cursor:pointer;flex-shrink:0}
+.theme-switch input{position:absolute;opacity:0;width:0;height:0}
+.switch-track{
+  position:absolute;inset:0;border-radius:999px;
+  background:#A8A29E;transition:background .3s ease;
+}
+.switch-track i{
+  position:absolute;top:50%;transform:translateY(-50%);
+  font-size:.7rem;color:#fff;z-index:1;
+}
+.switch-track .fa-sun{left:6px}
+.switch-track .fa-moon{right:6px}
+.switch-knob{
+  position:absolute;top:2px;left:2px;width:20px;height:20px;border-radius:50%;
+  background:#E7E5E4;z-index:2;transition:transform .3s ease;
+}
+.theme-switch input:checked + .switch-track .switch-knob{transform:translateX(25px)}
+.theme-switch input:focus-visible + .switch-track{outline:3px solid var(--accent);outline-offset:3px}
+
+.nav-toggle{
+  display:none;background:none;border:0;cursor:pointer;
+  font-size:1.5rem;color:var(--text);width:44px;height:44px;
+}
+
+/* Mobile menu */
+.mobile-menu{
+  display:none;
+  position:fixed;top:var(--nav-h);left:0;right:0;bottom:0;z-index:99;
+  background:var(--bg-1);
+  padding:1rem 1.5rem;overflow-y:auto;
+}
+.mobile-menu.open{display:block}
+.mobile-menu ul{list-style:none;text-align:center;font-size:1.25rem}
+.mobile-menu li{border-bottom:1px solid var(--border)}
+.mobile-menu a{display:block;padding:1.25rem 0;transition:background .2s ease,color .2s ease;border-radius:6px}
+.mobile-menu a:hover{background:var(--btn-hover-bg);color:var(--accent)}
+.mobile-menu .mobile-switch-row{display:flex;justify-content:center;margin-top:2rem}
+
+/* ============ Hero / Home ============ */
+.hero{padding:clamp(4rem,8vw,7rem) 0}
+.hero-flex{
+  display:flex;flex-direction:column-reverse;align-items:flex-start;gap:2.5rem;
+  text-align:left;
+}
+@media(min-width:1024px){
+  .hero-flex{flex-direction:row;justify-content:space-between;gap:5rem;align-items:center}
+}
+.hero-left{display:flex;flex-direction:column;align-items:flex-start;max-width:46rem}
+
+.hero h1{
+  font-family:'Manrope',sans-serif;font-weight:700;
+  font-size:clamp(1.875rem,5vw,3rem);letter-spacing:-0.01em;
+  margin-bottom:1.25rem;line-height:1.3;
+}
+.hero-role{
+  font-size:1.125rem;font-weight:600;color:var(--faint);
+  margin-bottom:1.5rem;line-height:1.6;
+}
+.hero-bio{font-size:1rem;margin-bottom:1.5rem;color:var(--muted)}
+
+.social-row{display:flex;flex-wrap:wrap;gap:.75rem;justify-content:flex-start;margin-top:.5rem}
+.social-btn{
+  display:inline-flex;align-items:center;gap:.5rem;
+  border:1px solid var(--border);border-radius:.5rem;
+  padding:.5rem 1rem;font-size:1.05rem;color:var(--text);
+  transition:background .2s ease,border-color .2s ease,color .2s ease;
+}
+.social-btn:hover{background:var(--btn-hover-bg);border-color:var(--accent)}
+
+.interests{margin-top:2rem;width:100%}
+.interests h3{
+  font-family:'Manrope',sans-serif;font-weight:600;font-size:1.125rem;
+  margin-bottom:.75rem;
+}
+.interest-pills{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:flex-start;list-style:none}
+.interest-pills li{
+  background:var(--pill-bg);color:var(--pill-text);
+  border:1px solid var(--pill-border);
+  padding:.25rem .75rem;border-radius:999px;
+  font-size:.75rem;font-weight:500;
+}
+
+
+.avatar{
+  width:13rem;height:13rem;border-radius:50%;flex-shrink:0;
+  box-shadow:0 0 0 4px var(--ring),0 20px 25px -5px rgba(0,0,0,.2),0 8px 10px -6px rgba(0,0,0,.2);
+  background:var(--card);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Manrope',sans-serif;font-weight:700;font-size:4rem;color:var(--accent);
+  object-fit:cover;
+}
+@media(min-width:1024px){.avatar{width:18rem;height:18rem;font-size:5.5rem}}
+
+.pub-card{
+  max-width:56rem;
+  background:var(--card);border:1px solid var(--border);border-radius:.5rem;
+  padding:1.5rem;margin-bottom:1.5rem;
+  box-shadow:0 1px 2px rgba(0,0,0,.05);
+  transition:box-shadow .3s ease,transform .3s ease,background .3s ease,border-color .3s ease;
+}
+.pub-card:hover{
+  transform:translateY(-4px);
+  box-shadow:0 4px 6px -1px rgba(0,0,0,.1),var(--glow);
+}
+.pub-title{font-size:clamp(1.25rem,2vw,1.5rem);font-weight:700;margin-bottom:.5rem;line-height:1.4}
+.pub-venue{font-style:italic;color:var(--faint);margin-bottom:.5rem;font-size:.98rem}
+.pub-authors{color:var(--muted);margin-bottom:.5rem}
+.pub-authors .me{font-weight:700;color:var(--accent)}
+.pub-summary{color:var(--faint);margin-bottom:1rem}
+.pub-stack{font-size:.9rem;color:var(--faint);margin-bottom:1rem}
+.pub-stack strong{color:var(--muted);font-weight:600}
+.pub-msg{
+  display:flex;align-items:center;gap:.5rem;
+  color:var(--accent);font-style:italic;margin-bottom:.75rem;font-size:.95rem;
+}
+.pub-links{display:flex;flex-wrap:wrap;align-items:center;gap:1.25rem}
+.pub-links a{
+  display:inline-flex;align-items:center;gap:.5rem;
+  font-size:1rem;transition:color .2s ease;
+}
+.pub-links a.plain{color:var(--text)}
+.pub-links a.plain:hover{color:var(--accent)}
+.pub-links a.accent{color:var(--accent);font-weight:600}
+.pub-links a.accent:hover{color:var(--accent-hover);text-decoration:underline;text-underline-offset:3px}
+
+.brand-card{
+  border:1px solid var(--border);border-radius:.75rem;overflow:hidden;
+  background:var(--card);box-shadow:0 1px 2px rgba(0,0,0,.05);
+  transition:box-shadow .3s ease,transform .3s ease;
+}
+.brand-card:hover{transform:translateY(-4px);box-shadow:0 4px 6px -1px rgba(0,0,0,.1),var(--glow)}
+.brand-cover{background:#0D1D2D;display:flex;align-items:center;justify-content:center;padding:1.5rem}
+.brand-cover img{height:190px;width:auto;display:block}
+.brand-stats{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--border)}
+.brand-stat{padding:1.4rem 1rem;text-align:center}
+.brand-stat + .brand-stat{border-left:1px solid var(--border)}
+.hadron-grid{display:grid;gap:2.5rem}
+#hadron .section-head{margin-bottom:1.75rem}
+@media(min-width:900px){.hadron-grid{grid-template-columns:1.2fr 1fr;gap:4rem;align-items:start}}
+.hadron-text p{color:var(--muted);font-size:1.05rem;margin-bottom:1.75rem;max-width:56ch}
+.stat-num{
+  font-family:'Manrope',sans-serif;font-weight:700;
+  font-size:2.75rem;color:var(--accent);line-height:1.1;
+}
+.stat-label{margin-top:.4rem;color:var(--faint);font-weight:500}
+
+/* ============ Contact ============ */
+.contact-line{color:var(--muted);font-size:1.1rem;max-width:56ch;margin-bottom:2rem}
+
+/* ============ Footer ============ */
+.footer{
+  background:var(--footer-bg);border-top:1px solid var(--border);
+  padding:2rem 0;color:var(--muted);
+}
+.footer-inner{
+  display:flex;flex-direction:column;align-items:center;gap:1rem;
+}
+@media(min-width:640px){.footer-inner{flex-direction:row;justify-content:space-between}}
+.footer-social{display:flex;gap:2rem}
+.footer-social a{font-size:1.5rem;transition:color .2s ease}
+.footer-social a:hover{color:var(--accent)}
+.footer-copy{font-size:.9rem;color:var(--faint)}
+
+/* ============ Reveal on scroll (fade-up) ============ */
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .5s ease,transform .5s ease}
+.reveal.in-view{opacity:1;transform:none}
+
+/* Hero load animation (fade-down / fade-up) */
+@keyframes fadeDown{from{opacity:0;transform:translateY(-18px)}to{opacity:1;transform:none}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+.fd{animation:fadeDown .7s ease both}
+.fu{animation:fadeUp .7s ease both}
+.d1{animation-delay:.05s}.d2{animation-delay:.15s}.d3{animation-delay:.25s}.d4{animation-delay:.35s}.d5{animation-delay:.45s}
+
+/* ============ Responsive nav ============ */
+@media(max-width:900px){
+  .nav-links{display:none}
+  .nav-right .theme-switch{display:none}
+  .nav-toggle{display:block}
+}
+
+/* ============ Reduced motion ============ */
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .reveal,.fd,.fu{opacity:1;transform:none}
+}
+</style>
+</head>
+
+<body>
+
+<!-- ================= NAV ================= -->
+<nav class="nav" aria-label="Primary">
+  <div class="nav-inner">
+    <a href="#home" class="wordmark">Pranauv Skandhan</a>
+
+    <div class="nav-right">
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+
+      <label class="theme-switch" title="Toggle dark mode">
+        <input type="checkbox" class="theme-input" checked aria-label="Toggle dark mode">
+        <span class="switch-track">
+          <i class="fa-solid fa-sun" aria-hidden="true"></i>
+          <i class="fa-solid fa-moon" aria-hidden="true"></i>
+          <span class="switch-knob"></span>
+        </span>
+      </label>
+
+      <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Toggle menu">
+        <i class="fa-solid fa-bars" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <ul>
+    <li><a href="#home">Home</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="mobile-switch-row">
+    <label class="theme-switch" title="Toggle dark mode">
+      <input type="checkbox" class="theme-input" checked aria-label="Toggle dark mode">
+      <span class="switch-track">
+        <i class="fa-solid fa-sun" aria-hidden="true"></i>
+        <i class="fa-solid fa-moon" aria-hidden="true"></i>
+        <span class="switch-knob"></span>
+      </span>
+    </label>
+  </div>
+</div>
+
+<main>
+
+<!-- ================= HOME / HERO ================= -->
+<header class="hero bg-1" id="home">
+  <div class="container hero-flex">
+    <div class="hero-left">
+      <h1 class="fd d1">Pranauv Skandhan</h1>
+      <p class="hero-role fd d2">Physics Undergraduate &amp; AI/ML Researcher — SRM Institute of Science and Technology, Chennai.</p>
+      <p class="hero-bio fd d3">
+        I build AI systems that answer real questions. I am a physics undergraduate at
+        <a href="https://www.srmist.edu.in" target="_blank" rel="noopener" class="tlink">SRM Institute of Science and Technology</a>, Chennai,
+        completing the <a href="https://micromasters.mit.edu/ds/" target="_blank" rel="noopener" class="tlink">MITx MicroMasters</a> in Statistics and Data Science.
+        My work sits at the intersection of data, policy, and real-world impact — ML systems and research platforms spanning
+        renewable energy, enterprise AI readiness, and institutional analytics. 
+      </p>
+
+      <div class="social-row fd d4">
+        <a href="mailto:pranauvent@gmail.com" class="social-btn">Email <i class="fa-solid fa-envelope" aria-hidden="true"></i></a>
+        <a href="https://www.linkedin.com/in/pranauv-skandhan/" target="_blank" rel="noopener" class="social-btn">LinkedIn <i class="fa-brands fa-linkedin-in" aria-hidden="true"></i></a>
+        <a href="https://github.com/pranauvskandhan" target="_blank" rel="noopener" class="social-btn">GitHub <i class="fa-brands fa-github" aria-hidden="true"></i></a>
+      </div>
+
+      <div class="interests fd d5">
+        <h3>Interests</h3>
+        <ul class="interest-pills">
+          <li>AI &amp; Machine Learning</li>
+          <li>Climate Tech</li>
+          <li>Data Science</li>
+          <li>Smart Cities</li>
+          <li>Sustainable Development</li>
+        </ul>
+      </div>
+    </div>
+
+    <img src="assets/pfp.png" alt="Pranauv Skandhan" class="avatar fu d2">
+  </div>
+</header>
+
+<!-- ================= PROJECTS ================= -->
+<section class="section bg-2" id="projects">
+  <div class="container">
+    <div class="section-head reveal">
+      <h2 class="font-heading">Projects</h2>
+      <div class="head-bar"></div>
+      <span class="head-note">Research platforms, deployed systems, and real-world applications</span>
+    </div>
+
+    <!-- Project 1 -->
+    <article class="pub-card reveal">
+      <h3 class="pub-title">SRM Campus Library Analytics &amp; Dashboard</h3>
+      <p class="pub-venue">Data Analytics · Time Series · Institutional Tech</p>
+      <p class="pub-summary">Production-deployed analytics engine for the SRM University Central Library. Processes millions of records across 10 analytical models, including Facebook Prophet time-series forecasting for 7-day demand prediction and cross-subject association mining to identify co-borrowing patterns across academic disciplines.</p>
+      <p class="pub-stack"><strong>Stack:</strong> Python · FastAPI · Pandas · Prophet</p>
+      <p class="pub-msg"><i class="fa-solid fa-circle-info" aria-hidden="true"></i> Institutional deployment — no public demo</p>
+      <div class="pub-links">
+        <a href="https://github.com/pranauvskandhan/Campus-Library-Usage-Analytics-Dashboard-System" class="plain"><i class="fa-brands fa-github" aria-hidden="true"></i> GitHub</a>
+      </div>
+    </article>
+
+    <!-- Project 2 -->
+    <article class="pub-card reveal">
+      <h3 class="pub-title">SAIS Website</h3>
+      <p class="pub-venue">Web Development · International Education</p>
+      <p class="pub-summary">Complete official website for Somou Alresalah International School (SAIS), a Cognia-accredited international school in Jubail, KSA. Fully responsive and bilingual English/Arabic.</p>
+      <p class="pub-stack"><strong>Stack:</strong> HTML · CSS · JavaScript</p>
+      <div class="pub-links">
+        <a href="#" class="accent"><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i> Live </a>
+        <a href="https://github.com/niyagiju/Somou-Alresalah-International-School-Official-Website" class="plain"><i class="fa-brands fa-github" aria-hidden="true"></i> GitHub</a>
+      </div>
+    </article>
+
+    <!-- Project 3 -->
+    <article class="pub-card reveal">
+      <h3 class="pub-title">Technology Adoption Analyzer</h3>
+      <p class="pub-venue">ML Research · Energy Policy · Data Science</p>
+      <p class="pub-summary">Research platform analyzing renewable energy adoption across 44 countries using World Bank panel data. XGBoost with SHAP explainability identifies which socioeconomic and policy factors drive clean energy transition, alongside Prophet forecasting and K-Means country clustering. Contributing to UN SDG 7 and SDG 13.</p>
+      <p class="pub-stack"><strong>Stack:</strong> Python · XGBoost · SHAP · Prophet · K-Means · Streamlit · World Bank API</p>
+      <div class="pub-links">
+        <a href="https://technology-adoption-analyzer-cp9mr9zlv6hghf93yvytvb.streamlit.app/" class="accent"><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>Live</a>
+        <a href="https://github.com/pranauvskandhan/Technology-Adoption-Analyzer" class="plain"><i class="fa-brands fa-github" aria-hidden="true"></i> GitHub</a>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+
+
+<!-- ================= CONTACT ================= -->
+<section class="section bg-1" id="contact">
+  <div class="container">
+    <div class="section-head reveal">
+      <h2 class="font-heading">Get in touch</h2>
+      <div class="head-bar"></div>
+    </div>
+
+    <div class="reveal">
+      <p class="contact-line">Open to research collaborations, consulting conversations.</p>
+      <div class="social-row" style="justify-content:flex-start">
+        <a href="mailto:pranauvent@gmail.com" class="social-btn">Email <i class="fa-solid fa-envelope" aria-hidden="true"></i></a>
+        <a href="https://www.linkedin.com/in/pranauv-skandhan/" target="_blank" rel="noopener" class="social-btn">LinkedIn <i class="fa-brands fa-linkedin-in" aria-hidden="true"></i></a>
+        <a href="https://github.com/pranauvskandhan" target="_blank" rel="noopener" class="social-btn">GitHub <i class="fa-brands fa-github" aria-hidden="true"></i></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer class="footer">
+  <div class="container footer-inner">
+    <div class="footer-social">
+      <a href="https://www.linkedin.com/in/pranauv-skandhan/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in" aria-hidden="true"></i></a>
+      <a href="https://github.com/pranauvskandhan" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github" aria-hidden="true"></i></a>
+    </div>
+    <p class="footer-copy">&copy; 2026 Pranauv Skandhan</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ---------- Theme toggle (dark by default, like the reference) ---------- */
+  var themeInputs = document.querySelectorAll(".theme-input");
+  function setTheme(dark){
+    document.documentElement.classList.toggle("dark", dark);
+    themeInputs.forEach(function(input){ input.checked = dark; });
+  }
+  themeInputs.forEach(function(input){
+    input.addEventListener("change", function(){ setTheme(input.checked); });
+  });
+
+  /* ---------- Mobile menu ---------- */
+  var toggle = document.getElementById("navToggle");
+  var menu = document.getElementById("mobileMenu");
+  var icon = toggle.querySelector("i");
+
+  function setMenu(open){
+    menu.classList.toggle("open", open);
+    toggle.setAttribute("aria-expanded", open ? "true" : "false");
+    icon.className = open ? "fa-solid fa-xmark" : "fa-solid fa-bars";
+    document.body.style.overflow = open ? "hidden" : "";
+  }
+  toggle.addEventListener("click", function(){
+    setMenu(!menu.classList.contains("open"));
+  });
+  menu.addEventListener("click", function(e){
+    if (e.target.tagName === "A") setMenu(false);
+  });
+  document.addEventListener("keydown", function(e){
+    if (e.key === "Escape") setMenu(false);
+  });
+
+  /* ---------- Active nav link while scrolling ---------- */
+  var navAnchors = document.querySelectorAll("#navLinks a");
+  var sections = [];
+  navAnchors.forEach(function(a){
+    var sec = document.querySelector(a.getAttribute("href"));
+    if (sec) sections.push({ el: sec, link: a });
+  });
+
+  function setActive(link){
+    navAnchors.forEach(function(a){ a.classList.remove("active"); });
+    if (link) link.classList.add("active");
+  }
+
+  var sectionObserver = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if (entry.isIntersecting){
+        var match = sections.find(function(s){ return s.el === entry.target; });
+        if (match) setActive(match.link);
+      }
+    });
+  }, { rootMargin: "-40% 0px -55% 0px", threshold: 0 });
+
+  sections.forEach(function(s){ sectionObserver.observe(s.el); });
+
+  /* ---------- Scroll-reveal (fade-up, like the reference sections) ---------- */
+  var revealEls = document.querySelectorAll(".reveal");
+  var revealObserver = new IntersectionObserver(function(entries, obs){
+    entries.forEach(function(entry){
+      if (entry.isIntersecting){
+        entry.target.classList.add("in-view");
+        obs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: "0px 0px -30px 0px" });
+
+  revealEls.forEach(function(el){ revealObserver.observe(el); });
+
+})();
+</script>
+
+</body>
+</html>
